@@ -222,5 +222,3 @@ Full documentation is available via Swagger UI at `/swagger-ui.html`.
 - Write comprehensive unit and integration tests.
 - Add CI/CD pipelines with GitHub Actions.
 ---
-
-*Built with passion for data structures and clean architecture.*
