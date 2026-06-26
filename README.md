@@ -5,7 +5,7 @@ Built with Java Spring Boot, React, and PostgreSQL, and deployed on Render, Verc
 
 ## 1. Description and Overview
 
-FlowState is a **smart task orchestration and workflow engine** designed to manage, schedule, and execute interdependent tasks with priority‑based scheduling. The system allows users to define tasks with dependencies, group them into workflows, and execute them in a topologically sorted order – all while respecting resource constraints and providing undo capabilities.
+FlowState is a **smart task orchestration and workflow engine** designed to manage, schedule, and execute interdependent tasks with priority‑based scheduling. The system allows users to define tasks with dependencies, group them into workflows, and execute them in a topologically sorted order, all while respecting resource constraints and providing undo capabilities.
 
 The project demonstrates the practical application of fundamental data structures (heaps, graphs, trees, stacks) within a modern web architecture. It is built as a full‑stack application with a clean separation between the backend API, a persistent database, and a responsive frontend dashboard.
 
@@ -34,7 +34,7 @@ The backend is implemented in **Java 21** using **Spring Boot 3**, with **JPA/Hi
 
 ### 3.1. Task Management
 - Create, read, update, and delete tasks.
-- Assign a priority (1–10) to each task.
+- Assign a priority (1-10) to each task.
 - Define dependencies between tasks (a task can wait for one or more others to complete).
 - Filter tasks by status and search by name.
 - Undo the last state change of a task (powered by a custom stack).
@@ -157,7 +157,7 @@ cd workflow-orchestration-engine
 
 ## 7. Deployment
 
-### Backend – Render
+### Backend Render
 1. Push the code to a GitHub repository.
 2. On Render, create a new Web Service and connect your repository.
 3. Set the **Root Directory** to `backend`.
@@ -166,14 +166,14 @@ cd workflow-orchestration-engine
    - `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USERNAME`, `DB_PASSWORD`, `PORT` (set to `8080`).
 6. Deploy. The service will be available at a `onrender.com` URL.
 
-### Frontend – Vercel
+### Frontend Vercel
 1. Import the same GitHub repository on Vercel.
 2. Set the **Root Directory** to `frontend`.
 3. Choose **Vite** as the framework.
 4. Add the environment variable `VITE_API_URL` with the Render backend URL.
 5. Deploy. The frontend will be served at a `vercel.app` URL.
 
-### Database – Neon
+### Database Neon
 1. Sign up at [Neon](https://neon.tech).
 2. Create a project and database.
 3. Copy the connection string and use it in the backend environment variables.
@@ -221,4 +221,3 @@ Full documentation is available via Swagger UI at `/swagger-ui.html`.
 - Create a visual DAG editor for workflows.
 - Write comprehensive unit and integration tests.
 - Add CI/CD pipelines with GitHub Actions.
----
