@@ -13,11 +13,15 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // Allow CORS on all endpoints
-                        .allowedOrigins("https://workflow-orchestration-engine-9vxf4pof6.vercel.app") // Your frontend URL
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allowed HTTP methods
-                        .allowedHeaders("*") // Allow all headers
-                        .allowCredentials(true); // Allow credentials (cookies, authorization headers)
+                registry.addMapping("/**")
+                        .allowedOrigins(
+                                "https://workflow-orchestration-engine-9vxf4pof6.vercel.app",
+                                "https://workflow-orchestration-engine-snowy.vercel.app",
+                                "http://localhost:5173"   // for local development
+                        )
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }
