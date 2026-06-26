@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+// Use environment variable or fallback
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: API_URL,
   headers: { 'Content-Type': 'application/json' },
 });
 
@@ -35,7 +38,7 @@ export const deleteTemplate = (name) => api.delete(`/workflows/templates/${name}
 // Undo History
 export const getUndoHistory = () => api.get('/undo/history');
 
-// Add this to existing api.js
+// Execution Logs
 export const getRecentLogs = () => api.get('/logs/recent');
 
 export default api;
