@@ -1,34 +1,24 @@
-# Use Eclipse Temurin (official OpenJDK distribution) on Alpine Linux
-FROM eclipse-temurin:21-jdk-alpine AS build
+# Build stage with Maven and JDK 21
+FROM maven:3.9.6-eclipse-temurin-21-alpine AS build
 
-# Set working directory
 WORKDIR /app
 
-# Copy Maven project files
+# Copy pom.xml and download dependencies (cached for faster builds)
 COPY pom.xml .
-COPY mvnw .
-COPY .mvn .mvn
+RUN mvn dependency:go-offline -B
 
-# Download dependencies (cached for faster builds)
-RUN ./mvnw dependency:go-offline -B
-
-# Copy source code
+# Copy source code and build
 COPY src ./src
+RUN mvn clean package -DskipTests
 
-# Build the application
-RUN ./mvnw clean package -DskipTests
-
-# --- Runtime stage ---
+# Runtime stage with JRE only
 FROM eclipse-temurin:21-jdk-alpine
 
-# Set working directory
 WORKDIR /app
 
 # Copy the built JAR from the build stage
 COPY --from=build /app/target/*.jar app.jar
 
-# Expose port
 EXPOSE 8080
 
-# Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
