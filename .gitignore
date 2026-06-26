@@ -36,10 +36,12 @@ dist/
 dist-ssr/
 *.local
 
-# Environment
+# Environment variables
 .env
 .env.local
 .env.*.local
+backend/.env
+frontend/.env
 
 # OS
 .DS_Store
