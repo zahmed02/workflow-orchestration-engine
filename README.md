@@ -3,15 +3,11 @@
 A full‑stack, data‑structure‑driven workflow automation platform that orchestrates complex task dependencies with priority‑based scheduling, resource management, and undo/redo capabilities.  
 Built with Java, Spring Boot, React, and PostgreSQL – deployed on Render, Vercel, and Neon.
 
----
-
 ## Overview
 
 This project demonstrates how multiple classic data structures can be combined to solve real‑world workflow orchestration problems. At its core, it manages **tasks** (with priorities and dependencies), groups them into **workflows**, and executes them using a priority‑based scheduler (`MaxHeap`) that respects dependency order (`AdjacencyListGraph` with topological sort).
 
 Additional features include **resource tracking** (CPU, memory, etc.), **undo history** (via a custom stack), and **template caching** (using an AVL tree). The system is exposed via a REST API and a sleek, dark‑themed React dashboard.
-
----
 
 ## Features
 
@@ -24,8 +20,6 @@ Additional features include **resource tracking** (CPU, memory, etc.), **undo hi
 - **Template Cache** – Save workflows as templates in an AVL tree for quick reuse.  
 - **Full‑Stack Dashboard** – Interactive React frontend with dark mode, summary cards, activity feeds, and execution logs.  
 - **Persistent Storage** – PostgreSQL database (Neon) stores all entities; data survives restarts.
-
----
 
 ## Tech Stack
 
@@ -51,8 +45,6 @@ Additional features include **resource tracking** (CPU, memory, etc.), **undo hi
 - **Neon.tech** – cloud PostgreSQL (free tier)  
 - **GitHub** – version control and CI/CD trigger  
 
----
-
 ## Data Structures & Algorithms
 
 | Data Structure | Purpose | Usage |
@@ -63,34 +55,7 @@ Additional features include **resource tracking** (CPU, memory, etc.), **undo hi
 | **UndoStack** | Stack (LIFO) | Stores task snapshots; pop to undo the most recent state. |
 | **HashMap** | Resource manager | O(1) lookup of resource by name to update capacity. |
 
----
-
-## Architecture
-
-```
-┌─────────────────┐      ┌─────────────────────────────────┐
-│   React UI      │ ──▶  │    Spring Boot REST API         │
-│  (Vercel)       │      │    (Render)                     │
-└─────────────────┘      │                                 │
-                         │  ┌───────────────────────────┐  │
-                         │  │ Controllers               │  │
-                         │  ├───────────────────────────┤  │
-                         │  │ Services (with DS usage)  │  │
-                         │  ├───────────────────────────┤  │
-                         │  │ JPA Repositories          │  │
-                         │  └───────────────────────────┘  │
-                         │          │                      │
-                         └──────────┼──────────────────────┘
-                                    │
-                             ┌──────▼──────┐
-                             │  PostgreSQL │
-                             │  (Neon)     │
-                             └─────────────┘
-```
-
----
-
-## 🚀 Getting Started (Local Development)
+## Getting Started (Local Development)
 
 ### Prerequisites
 - **Java 21** (JDK)  
@@ -155,8 +120,6 @@ cd workflow-orchestration-engine
 
 - The frontend proxies `/api` requests to the backend automatically during development.
 
----
-
 ## API Endpoints (Main)
 
 | Endpoint | Method | Description |
@@ -172,16 +135,12 @@ cd workflow-orchestration-engine
 | `/api/logs/recent` | GET | Fetch recent execution logs |
 | `/api/undo/history` | GET | Retrieve the undo stack contents |
 
----
-
-## Testing the System
+## Testing
 
 1. **Create a Task** – via frontend (Tasks page) or API.
 2. **Create a Workflow** – select existing tasks; their dependencies will be respected.
 3. **Execute the Workflow** – click the play button; tasks will run in priority order.
 4. **Monitor** – see status changes in the task list and execution logs on the dashboard.
-
----
 
 ## Deployment
 
@@ -198,8 +157,6 @@ cd workflow-orchestration-engine
 ### Database (Neon)
 - Neon provides a fully managed PostgreSQL database.
 - The free tier includes 0.5 GB storage and auto‑scaling to zero when idle.
-
----
 
 ## Project Structure
 
