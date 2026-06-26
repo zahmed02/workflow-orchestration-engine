@@ -11,12 +11,12 @@ public class Task {
     private Long id;
 
     private String name;
-    private int priority;  // higher = more important
+    private int priority;
 
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)   // ← FIXED
     @JoinTable(
         name = "task_dependencies",
         joinColumns = @JoinColumn(name = "task_id"),
@@ -33,8 +33,7 @@ public class Task {
         this.status = TaskStatus.PENDING;
     }
 
-    // Getters and setters (omitted for brevity, but you must generate them)
-    // I'll list them below.
+    // Getters and setters (keep all)
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getName() { return name; }
