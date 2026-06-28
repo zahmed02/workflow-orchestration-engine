@@ -13,7 +13,7 @@ public class Resource {
     private double available;
 
     // User association
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 

@@ -18,7 +18,7 @@ public class ExecutionLog {
     private String details;
 
     // User association
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
