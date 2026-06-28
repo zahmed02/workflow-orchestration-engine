@@ -1,9 +1,6 @@
 package com.workflow.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Resource {
@@ -14,6 +11,11 @@ public class Resource {
     private String name;
     private double total;
     private double available;
+
+    // User association
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Resource() {}
 
@@ -32,4 +34,6 @@ public class Resource {
     public void setTotal(double total) { this.total = total; }
     public double getAvailable() { return available; }
     public void setAvailable(double available) { this.available = available; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 }

@@ -1,12 +1,7 @@
 package com.workflow.model;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class ExecutionLog {
@@ -19,8 +14,13 @@ public class ExecutionLog {
 
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private String result; // e.g., "COMPLETED", "FAILED", "RUNNING"
-    private String details; // optional extra info
+    private String result;
+    private String details;
+
+    // User association
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public ExecutionLog() {}
 
@@ -43,4 +43,6 @@ public class ExecutionLog {
     public void setResult(String result) { this.result = result; }
     public String getDetails() { return details; }
     public void setDetails(String details) { this.details = details; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 }

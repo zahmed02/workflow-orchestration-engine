@@ -16,7 +16,7 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
 
-    @ManyToMany(fetch = FetchType.EAGER)   // ← FIXED
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "task_dependencies",
         joinColumns = @JoinColumn(name = "task_id"),
@@ -24,7 +24,12 @@ public class Task {
     )
     private List<Task> dependencies = new ArrayList<>();
 
-    // Constructors, getters, setters...
+    // User association
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    // Constructors
     public Task() {}
 
     public Task(String name, int priority) {
@@ -33,7 +38,7 @@ public class Task {
         this.status = TaskStatus.PENDING;
     }
 
-    // Getters and setters (keep all)
+    // Getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getName() { return name; }
@@ -44,4 +49,6 @@ public class Task {
     public void setStatus(TaskStatus status) { this.status = status; }
     public List<Task> getDependencies() { return dependencies; }
     public void setDependencies(List<Task> dependencies) { this.dependencies = dependencies; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 }

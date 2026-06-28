@@ -12,9 +12,14 @@ public class Workflow {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)   // ← FIXED
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "workflow_id")
     private List<Task> tasks = new ArrayList<>();
+
+    // User association
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Workflow() {}
 
@@ -29,4 +34,6 @@ public class Workflow {
     public void setName(String name) { this.name = name; }
     public List<Task> getTasks() { return tasks; }
     public void setTasks(List<Task> tasks) { this.tasks = tasks; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 }
